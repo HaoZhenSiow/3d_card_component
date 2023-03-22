@@ -1,36 +1,37 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
-import { SheetsRegistry, JssProvider, createGenerateId } from "react-jss";
-class MyDocument extends Document {
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
+
+export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
-    const registry = new SheetsRegistry();
-    const generateId = createGenerateId();
+    const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
-    ctx.renderPage = () =>
-      originalRenderPage({
-        enhanceApp: (App) => (props) => (
-          <JssProvider registry={registry} generateId={generateId}>
-            <App {...props} />
-          </JssProvider>
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+        });
+
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
         ),
-      });
-    const initialProps = await Document.getInitialProps(ctx);
-    return {
-      ...initialProps,
-      styles: (
-        <>
-          {initialProps.styles}
-          <style id="server-side-styles">{registry.toString()}</style>
-        </>
-      ),
-    };
+      };
+    } finally {
+      sheet.seal();
+    }
   }
+
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
-          <link rel="preconnect" href="https://fonts.googleapis.com"/>
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-          <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Lobster&display=swap" rel="stylesheet"/>
+          {/* Add any required meta tags, links, scripts etc. here */}
         </Head>
         <body>
           <Main />
@@ -40,4 +41,3 @@ class MyDocument extends Document {
     );
   }
 }
-export default MyDocument;

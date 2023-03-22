@@ -1,8 +1,7 @@
-import styled from 'js-styled'
+import styled from 'styled-components';
 import Image from 'next/image'
 
-const jss = styled(`
-member {
+const MemberStyled = styled.div`
   width: 300px;
   aspect-ratio: 9/13;
   position: relative;
@@ -57,20 +56,17 @@ member {
     }
     
   }
-
-}
-`)
+`
 
 export default function Member(props) {
-  const classes = jss()
   return (
-    <div className={`${classes['member']} ${props.className}`}>
+    <MemberStyled className={`${props.className}`}>
       <div className='cover'></div>
       <Image src="/interior_designer.png" alt="Jeremy" width="280" height="450"/>
       <div className='info'>
         <h2>Jeremy</h2>
         <p>Senior Interior Designer</p>
       </div>
-    </div>
+    </MemberStyled>
   );
 }

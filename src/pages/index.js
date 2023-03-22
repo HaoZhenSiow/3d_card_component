@@ -1,26 +1,13 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import Member from '@/components/Member'
-import styled from 'js-styled'
+import styled from 'styled-components'
 
-const jss = styled(`
-  memberEx {
-
-    & h2 {
-      font-family: 'Lobster', cursive;
-      font-size: 48px;
-      text-shadow: 0 0 40px black;
-    }
-    & p {
-      font-family: 'Italianno', cursive;
-      font-size: 32px;
-    }
-  }
-`)
+const MemberEx = styled(Member)`
+  width: 300px;
+`
 
 export default function Home() {
-
-  const classes = jss()
 
   return (
     <>
@@ -31,7 +18,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Member className={classes.memberEx}/>
+        <MemberEx/>
       </main>
     </>
   )
