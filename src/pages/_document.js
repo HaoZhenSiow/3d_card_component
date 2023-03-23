@@ -31,7 +31,9 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          {/* Add any required meta tags, links, scripts etc. here */}
+          <link rel="preconnect" href="https://fonts.googleapis.com"/>
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+          <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Lobster&display=swap" rel="stylesheet"/>
         </Head>
         <body>
           <Main />

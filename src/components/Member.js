@@ -37,6 +37,16 @@ const MemberStyled = styled.div`
     translate: -50%;
     transition-property: bottom;
     transition-duration: 500ms;
+
+    & h2 {
+      font-family: 'Lobster', cursive;
+      font-size: 48px;
+      text-shadow: 0 0 40px black;
+    }
+    & p {
+      font-family: 'Italianno', cursive;
+      font-size: 32px;
+    }
   }
 
   &:hover {
@@ -53,6 +63,7 @@ const MemberStyled = styled.div`
 
     & .info {
       bottom: 12%;
+
     }
     
   }
