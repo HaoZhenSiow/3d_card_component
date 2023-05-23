@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-438K2EY167"></Script>
+      <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-L4KCE6P66V"></Script>
       <Script
         id='google-analytics'
         strategy="afterInteractive"
@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }) {
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-438K2EY167', {
+              gtag('config', 'G-L4KCE6P66V', {
               page_path: window.location.pathname,
               });
             `,
